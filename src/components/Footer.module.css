@@ -1,0 +1,64 @@
+/* src/components/Footer.module.css */
+.footer {
+  background-color: #f8f9fa;
+  color: #333;
+  margin-top: auto;
+  border-top: 1px solid #e9ecef;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  padding: 3rem 0 2rem;
+}
+
+.brand h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c5530;
+}
+
+.brand p {
+  margin: 0;
+  color: #666;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.links h4 {
+  margin: 0 0 1rem 0;
+  color: #2c5530;
+}
+
+.links div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.links a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: #2c5530;
+}
+
+.bottom {
+  border-top: 1px solid #e9ecef;
+  padding: 1.5rem 0;
+  text-align: center;
+  color: #666;
+}
