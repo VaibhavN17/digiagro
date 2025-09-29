@@ -347,21 +347,6 @@ export default function Header() {
               </button>
             </form>
           </div>
-
-          <div className={styles.userSection}>
-            {isLoggedIn ? (
-              <div className={styles.userInfo}>
-                <span className={styles.welcome}>Welcome, {user?.name}!</span>
-                <button onClick={handleLogout} className={styles.logoutButton}>
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <Link href="/login" className={styles.loginButton}>
-                Login
-              </Link>
-            )}
-          </div>
         </div>
       </div>
 
