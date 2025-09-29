@@ -10,6 +10,7 @@ import BiosecurityLog from '../../components/BiosecurityLog';
 import OutbreakForecast from '../../components/OutbreakForecast';
 import ReportsModule from '../../components/ReportsModule';
 import BreedingInsights from '../../components/BreedingInsights';
+import PaymentModule from '../../components/PaymentModule'; // New Payment Module
 import SettingsPanel from '../../components/SettingsPanel';
 import MobileAlertFeed from '../../components/MobileAlertFeed';
 
@@ -94,6 +95,8 @@ export default function FarmerDashboard() {
         return <ReportsModule farmerId={user.id} />;
       case 'breeding':
         return <BreedingInsights farmId={user.farmId} />;
+      case 'payments':
+        return <PaymentModule farmerId={user.id} />; // New Payment Module
       case 'settings':
         return <SettingsPanel user={user} />;
       default:
@@ -142,7 +145,8 @@ export default function FarmerDashboard() {
               { id: 'biosecurity', label: 'Biosecurity Log', icon: '🛡️' },
               { id: 'forecast', label: 'Outbreak Forecast', icon: '📈' },
               { id: 'reports', label: 'Reports', icon: '📋' },
-              { id: 'breeding', label: 'Breeding Insights', icon: '🔍' }
+              { id: 'breeding', label: 'Breeding Insights', icon: '🔍' },
+               { id: 'payments', label: 'Payments', icon: '💳' } 
             ].map(item => (
               <button
                 key={item.id}
@@ -399,3 +403,5 @@ export default function FarmerDashboard() {
     </div>
   );
 }
+
+// src/components/AdminDashboardOverview.tsx
