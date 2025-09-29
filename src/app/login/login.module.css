@@ -1,93 +1,126 @@
 /* src/app/login/login.module.css */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 20px;
 }
 
 .form {
   background: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 450px;
+  max-width: 400px;
 }
 
-.title {
-  text-align: center;
+.greeting {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
   color: #333;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 24px 0;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #333;
 }
 
 .formGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 20px;
 }
 
 .label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
+  margin-bottom: 8px;
   font-weight: 500;
+  color: #333;
+  font-size: 14px;
 }
 
-.input, .select {
+.input {
   width: 100%;
   padding: 12px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 14px;
   box-sizing: border-box;
 }
 
-.input:focus, .select:focus {
+.input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+  border-color: #007bff;
+}
+
+.usernameHint {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  display: block;
+}
+
+.select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: white;
+  box-sizing: border-box;
 }
 
 .button {
   width: 100%;
   padding: 12px;
-  background: #667eea;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
-  margin-top: 1rem;
-  transition: background-color 0.2s;
+  margin-top: 16px;
 }
 
 .button:hover:not(:disabled) {
-  background: #5a6fd8;
+  background-color: #0056b3;
 }
 
 .button:disabled {
-  background: #ccc;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
-.demoCredentials {
-  margin-top: 2rem;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 5px;
-  border-left: 4px solid #667eea;
+.links {
+  margin-top: 24px;
+  text-align: center;
 }
 
-.demoCredentials h3 {
-  margin: 0 0 0.5rem 0;
-  color: #333;
-  font-size: 0.9rem;
+.link {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 8px;
 }
 
-.demoCredentials p {
-  margin: 0.25rem 0;
-  font-size: 0.8rem;
-  color: #666;
+.link:hover {
+  text-decoration: underline;
 }

@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
         </div>
         <div className={styles.bottom}>
-          <p>&copy; 2024 DigiAgro. All rights reserved.</p>
+          <p>&copy; 2025 DigiAgro. All rights reserved.</p>
         </div>
       </div>
     </footer>

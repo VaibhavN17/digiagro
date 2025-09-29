@@ -1,58 +1,4 @@
-// // src/app/farmer-dashboard/page.tsx
-// "use client";
-
-// import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/navigation';
-
-// export default function FarmerDashboard() {
-//   const [user, setUser] = useState<any>(null);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const userData = localStorage.getItem('user');
-//     if (!userData) {
-//       router.push('/login');
-//       return;
-//     }
-
-//     const userObj = JSON.parse(userData);
-//     if (userObj.role !== 'farmer') {
-//       router.push('/login');
-//       return;
-//     }
-
-//     setUser(userObj);
-//   }, [router]);
-
-//   if (!user) {
-//     return <div>Loading...</div>;
-//   }
-
-//   return (
-//     <div style={{ padding: '2rem' }}>
-//       <h1>Farmer Dashboard</h1>
-//       <p>Welcome, {user.name}!</p>
-      
-//       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '2rem' }}>
-//         <div style={{ background: '#f0f8ff', padding: '1rem', borderRadius: '8px' }}>
-//           <h3>Crop Management</h3>
-//           <p>Manage your crops and planting schedule</p>
-//         </div>
-        
-//         <div style={{ background: '#f0fff0', padding: '1rem', borderRadius: '8px' }}>
-//           <h3>Weather Updates</h3>
-//           <p>Get latest weather information</p>
-//         </div>
-        
-//         <div style={{ background: '#fff8f0', padding: '1rem', borderRadius: '8px' }}>
-//           <h3>Market Prices</h3>
-//           <p>Check current market rates</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
+// src/app/farmer-dashboard/page.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -66,7 +12,6 @@ import ReportsModule from '../../components/ReportsModule';
 import BreedingInsights from '../../components/BreedingInsights';
 import SettingsPanel from '../../components/SettingsPanel';
 import MobileAlertFeed from '../../components/MobileAlertFeed';
-
 
 // Mock data - replace with actual API calls
 const mockDashboardData = {
@@ -157,72 +102,112 @@ export default function FarmerDashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
       {/* Sidebar Navigation */}
       <div style={{
-        width: '250px',
-        background: '#2c3e50',
-        color: 'white',
-        padding: '1rem',
+        width: '280px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+        color: '#495057',
+        padding: '20px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        borderRight: '1px solid #dee2e6',
+        boxShadow: '2px 0 10px rgba(0, 0, 0, 0.05)'
       }}>
-        <div style={{ marginBottom: '2rem' }}>
-          <h2 style={{ margin: 0, color: '#3498db' }}>LiveStock AI</h2>
-          <small style={{ color: '#bdc3c7' }}>Farmer Portal</small>
+       
+        {/* Livestock AI Section */}
+        <div style={{ marginBottom: '30px' }}>
+          <h3 style={{ 
+            fontSize: '16px', 
+            fontWeight: 'bold', 
+            color: '#2d5016',
+            margin: '0 0 5px 0'
+          }}>
+            LiveStock AI
+          </h3>
+          <p style={{ 
+            fontSize: '12px', 
+            color: '#6c757d',
+            margin: '0 0 20px 0',
+            fontWeight: '500'
+          }}>
+            Farmer Portal
+          </p>
+          
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {[
+              { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+              { id: 'animals', label: 'Animal Registry', icon: '🐄' },
+              { id: 'health', label: 'Health Monitoring', icon: '❤️' },
+              { id: 'biosecurity', label: 'Biosecurity Log', icon: '🛡️' },
+              { id: 'forecast', label: 'Outbreak Forecast', icon: '📈' },
+              { id: 'reports', label: 'Reports', icon: '📋' },
+              { id: 'breeding', label: 'Breeding Insights', icon: '🔍' }
+            ].map(item => (
+              <button
+                key={item.id}
+                onClick={() => setActiveModule(item.id)}
+                style={{
+                  width: '100%',
+                  textAlign: 'left',
+                  padding: '12px 15px',
+                  background: activeModule === item.id ? 'rgba(40, 167, 69, 0.15)' : 'transparent',
+                  border: 'none',
+                  color: activeModule === item.id ? '#28a745' : '#495057',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  fontSize: '14px',
+                  transition: 'all 0.3s ease',
+                  borderLeft: activeModule === item.id ? '3px solid #28a745' : 'none'
+                }}
+                onMouseOver={(e) => {
+                  if (activeModule !== item.id) {
+                    e.currentTarget.style.background = 'rgba(40, 167, 69, 0.1)';
+                    e.currentTarget.style.color = '#28a745';
+                    e.currentTarget.style.transform = 'translateX(2px)';
+                  }
+                }}
+                onMouseOut={(e) => {
+                  if (activeModule !== item.id) {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#495057';
+                    e.currentTarget.style.transform = 'translateX(0)';
+                  }
+                }}
+              >
+                <span style={{ fontSize: '16px', minWidth: '20px', textAlign: 'center' }}>{item.icon}</span>
+                {item.label}
+              </button>
+            ))}
+          </nav>
         </div>
 
-        <nav style={{ flex: 1 }}>
-          {[
-            { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-            { id: 'animals', label: 'Animal Registry', icon: '🐄' },
-            { id: 'health', label: 'Health Monitoring', icon: '❤️' },
-            { id: 'biosecurity', label: 'Biosecurity Log', icon: '🔒' },
-            { id: 'forecast', label: 'Outbreak Forecast', icon: '🌡️' },
-            { id: 'reports', label: 'Reports', icon: '📋' },
-            { id: 'breeding', label: 'Breeding Insights', icon: '🧬' },
-            { id: 'settings', label: 'Settings', icon: '⚙️' }
-          ].map(item => (
-            <button
-              key={item.id}
-              onClick={() => setActiveModule(item.id)}
-              style={{
-                width: '100%',
-                textAlign: 'left',
-                padding: '0.75rem 1rem',
-                marginBottom: '0.5rem',
-                background: activeModule === item.id ? '#3498db' : 'transparent',
-                border: 'none',
-                color: 'white',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              <span>{item.icon}</span>
-              {item.label}
-            </button>
-          ))}
-        </nav>
-
-        <div style={{ borderTop: '1px solid #34495e', paddingTop: '1rem' }}>
+        {/* Status & Logout Section */}
+        <div style={{ 
+          marginTop: 'auto', 
+          borderTop: '1px solid #dee2e6', 
+          paddingTop: '20px' 
+        }}>
           <div style={{ 
             display: 'flex', 
             alignItems: 'center', 
-            marginBottom: '1rem',
-            padding: '0.5rem',
-            background: isOnline ? '#27ae60' : '#e74c3c',
-            borderRadius: '5px',
-            fontSize: '0.8rem'
+            marginBottom: '15px',
+            padding: '8px 12px',
+            background: isOnline ? 'rgba(39, 174, 96, 0.1)' : 'rgba(231, 76, 60, 0.1)',
+            border: `1px solid ${isOnline ? '#27ae60' : '#e74c3c'}`,
+            borderRadius: '6px',
+            fontSize: '14px',
+            color: isOnline ? '#27ae60' : '#e74c3c'
           }}>
             <div style={{
               width: '8px',
               height: '8px',
               borderRadius: '50%',
-              background: 'white',
-              marginRight: '0.5rem',
+              background: isOnline ? '#27ae60' : '#e74c3c',
+              marginRight: '8px',
               animation: isOnline ? 'pulse 2s infinite' : 'none'
             }} />
             {isOnline ? 'Online' : 'Offline Mode'}
@@ -233,13 +218,21 @@ export default function FarmerDashboard() {
               onClick={syncOfflineData}
               style={{
                 width: '100%',
-                padding: '0.5rem',
-                background: '#f39c12',
-                border: 'none',
-                color: 'white',
-                borderRadius: '5px',
+                padding: '10px',
+                background: 'rgba(243, 156, 18, 0.1)',
+                border: '1px solid #f39c12',
+                color: '#f39c12',
+                borderRadius: '6px',
                 cursor: 'pointer',
-                marginBottom: '0.5rem'
+                marginBottom: '10px',
+                fontSize: '14px',
+                transition: 'background-color 0.3s ease'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = 'rgba(243, 156, 18, 0.2)';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = 'rgba(243, 156, 18, 0.1)';
               }}
             >
               Sync Data
@@ -250,12 +243,21 @@ export default function FarmerDashboard() {
             onClick={handleLogout}
             style={{
               width: '100%',
-              padding: '0.75rem',
-              background: '#e74c3c',
-              border: 'none',
-              color: 'white',
-              borderRadius: '5px',
-              cursor: 'pointer'
+              padding: '12px',
+              background: 'rgba(231, 76, 60, 0.1)',
+              border: '1px solid #e74c3c',
+              color: '#e74c3c',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '14px',
+              fontWeight: '500',
+              transition: 'background-color 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = 'rgba(231, 76, 60, 0.2)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = 'rgba(231, 76, 60, 0.1)';
             }}
           >
             Logout
@@ -268,27 +270,41 @@ export default function FarmerDashboard() {
         {/* Header */}
         <header style={{
           background: 'white',
-          padding: '1rem 2rem',
-          borderBottom: '1px solid #ddd',
+          padding: '20px 30px',
+          borderBottom: '1px solid #dee2e6',
           display: 'flex',
           justifyContent: 'space-between',
-          alignItems: 'center'
+          alignItems: 'center',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
         }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: '1.5rem' }}>
+            <h1 style={{ 
+              margin: '0 0 5px 0', 
+              fontSize: '24px', 
+              fontWeight: 'bold',
+              color: '#2d5016'
+            }}>
               Welcome back, {user.name}!
             </h1>
-            <p style={{ margin: 0, color: '#666' }}>
+            <p style={{ 
+              margin: 0, 
+              color: '#6c757d',
+              fontSize: '14px'
+            }}>
               Farm: {user.farmName || 'My Farm'} | Location: {user.location || 'Not specified'}
             </p>
           </div>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <select 
               style={{ 
-                padding: '0.5rem',
-                border: '1px solid #ddd',
-                borderRadius: '5px'
+                padding: '8px 12px',
+                border: '1px solid #dee2e6',
+                borderRadius: '6px',
+                background: 'white',
+                color: '#495057',
+                fontSize: '14px',
+                outline: 'none'
               }}
               defaultValue={user.language || 'en'}
             >
@@ -299,11 +315,13 @@ export default function FarmerDashboard() {
             </select>
             
             <div style={{
-              padding: '0.5rem 1rem',
+              padding: '8px 16px',
               background: '#f8f9fa',
               borderRadius: '20px',
-              fontSize: '0.8rem',
-              border: '1px solid #dee2e6'
+              fontSize: '12px',
+              border: '1px solid #dee2e6',
+              color: '#495057',
+              fontWeight: '500'
             }}>
               Farmer ID: {user.id}
             </div>
@@ -314,14 +332,14 @@ export default function FarmerDashboard() {
         <div style={{
           background: '#fff3cd',
           border: '1px solid #ffeaa7',
-          padding: '0.75rem 2rem',
+          padding: '12px 30px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <div>
-            <strong>🚨 Active Alerts:</strong> 
-            <span style={{ marginLeft: '1rem' }}>
+          <div style={{ fontSize: '14px' }}>
+            <strong style={{ color: '#856404' }}>🚨 Active Alerts:</strong> 
+            <span style={{ marginLeft: '15px', color: '#856404' }}>
               {mockDashboardData.alertsCount} health alerts • 
               {mockDashboardData.biosecurityBreaches} biosecurity issues
             </span>
@@ -330,11 +348,22 @@ export default function FarmerDashboard() {
             background: 'transparent',
             border: '1px solid #f39c12',
             color: '#e67e22',
-            padding: '0.25rem 0.75rem',
-            borderRadius: '3px',
+            padding: '6px 12px',
+            borderRadius: '4px',
             cursor: 'pointer',
-            fontSize: '0.8rem'
-          }}>
+            fontSize: '12px',
+            fontWeight: '500',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = '#f39c12';
+            e.currentTarget.style.color = 'white';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = 'transparent';
+            e.currentTarget.style.color = '#e67e22';
+          }}
+          >
             View All
           </button>
         </div>
@@ -342,17 +371,18 @@ export default function FarmerDashboard() {
         {/* Main Content */}
         <main style={{ 
           flex: 1, 
-          padding: '2rem',
-          overflow: 'auto'
+          padding: '30px',
+          overflow: 'auto',
+          background: '#f8f9fa'
         }}>
           {renderActiveModule()}
         </main>
 
-        {/* Mobile Alert Feed (Bottom on mobile, sidebar on desktop) */}
+        {/* Mobile Alert Feed */}
         <div style={{
           position: 'fixed',
-          right: '2rem',
-          bottom: '2rem',
+          right: '30px',
+          bottom: '30px',
           zIndex: 1000
         }}>
           <MobileAlertFeed farmerId={user.id} />

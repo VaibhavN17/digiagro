@@ -1,100 +1,261 @@
 /* src/components/Header.module.css */
 .header {
-  background-color: #2c5530;
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+}
+
+/* Top Bar Styles */
+.topBar {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 12px 0;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: bold;
-  color: white;
+  color: #2d5016;
   text-decoration: none;
+  margin: 0;
 }
 
-.nav {
+.logo:hover {
+  color: #1e7e34;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #6c757d;
+  font-style: italic;
+}
+
+.searchSection {
+  flex: 1;
+  max-width: 400px;
+  margin: 0 20px;
+}
+
+.searchForm {
   display: flex;
-  gap: 1.5rem;
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
-.nav a {
+.searchInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+}
+
+.searchInput::placeholder {
+  color: #6c757d;
+}
+
+.searchButton {
+  padding: 8px 12px;
+  background: #28a745;
+  border: none;
   color: white;
-  text-decoration: none;
-  transition: opacity 0.2s;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.nav a:hover {
-  opacity: 0.8;
-}
-/* src/components/Header.module.css */
-.header {
-  background-color: #2c5530;
-  color: white;
-  padding: 1rem 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.searchButton:hover {
+  background: #218838;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+.userSection {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.nav {
+.userInfo {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
+  gap: 15px;
 }
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  font-size: 0.9rem;
+.welcome {
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
 }
 
-.nav a:hover {
-  opacity: 0.8;
-}
-
-/* Logout Button Styles */
 .logoutButton {
   background: #dc3545;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 .logoutButton:hover {
   background: #c82333;
+}
+
+.loginButton {
+  background: #28a745;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  background: #218838;
+}
+
+/* Navigation Styles */
+.nav {
+  background: white;
+  padding: 12px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #495057;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #28a745;
+}
+
+.navLink.active {
+  color: #28a745;
+}
+
+.navLink.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #28a745;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.legalLink {
+  text-decoration: none;
+  color: #6c757d;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+
+  .topBar .container {
+    gap: 10px;
+  }
+
+  .logoSection {
+    order: 1;
+    flex: 1;
+  }
+
+  .searchSection {
+    order: 3;
+    max-width: 100%;
+    margin: 10px 0 0 0;
+    min-width: 100%;
+  }
+
+  .userSection {
+    order: 2;
+  }
+
+  .tagline {
+    display: none;
+  }
+
+  .nav .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navLeft {
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .navRight {
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 20px;
+  }
+
+  .welcome {
+    display: none;
+  }
+
+  .navLeft {
+    gap: 15px;
+  }
+
+  .navLink {
+    font-size: 14px;
+  }
+
+  .legalLink {
+    font-size: 12px;
+  }
 }
