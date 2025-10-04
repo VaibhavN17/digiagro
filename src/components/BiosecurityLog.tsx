@@ -22,7 +22,7 @@ export default function BiosecurityLog({ farmId }: { farmId: string }) {
       {
         id: '1',
         timestamp: '2024-01-15T08:30:00Z',
-        person: 'Dr. Smith (Veterinarian)',
+        person: 'Dr. Raj (Veterinarian)',
         type: 'entry',
         location: 'Main Gate',
         status: 'authorized',
@@ -39,7 +39,7 @@ export default function BiosecurityLog({ farmId }: { farmId: string }) {
       {
         id: '3',
         timestamp: '2024-01-15T10:00:00Z',
-        person: 'Farm Worker - John Doe',
+        person: 'Farm Worker - Rajpal Yadav',
         type: 'entry',
         location: 'Staff Gate',
         status: 'authorized',

@@ -71,7 +71,7 @@ export default function ExpertDashboard() {
         alignItems: 'center', 
         height: '100vh' 
       }}>
-        <div>Loading Expert Dashboard...</div>
+        <div>Loading Veterinarian Dashboard...</div>
       </div>
     );
   }

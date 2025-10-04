@@ -9,7 +9,7 @@ export default function AdminSettingsPanel({ user }: { user: any }) {
         borderRadius: '8px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
       }}>
-        <p>Admin settings content goes here...</p>
+        <p>Content coming soon... Stay tuned!</p>
       </div>
     </div>
   );

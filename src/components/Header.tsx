@@ -74,7 +74,7 @@ export default function Header() {
         <div className={styles.container}>
           <div className={styles.logoSection}>
             <Link href="/" className={styles.logo}>
-              DigiAgro
+              DigiFarm 
             </Link>
             <span className={styles.tagline}>Digital Agriculture Platform</span>
           </div>

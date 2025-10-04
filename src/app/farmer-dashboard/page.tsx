@@ -13,6 +13,8 @@ import BreedingInsights from '../../components/BreedingInsights';
 import PaymentModule from '../../components/PaymentModule'; // New Payment Module
 import SettingsPanel from '../../components/SettingsPanel';
 import MobileAlertFeed from '../../components/MobileAlertFeed';
+//import RiskAnalysis from '../../components/RiskAnalysis'; // New Risk Analysis Module
+import LiveVideoDemo from '@/components/LiveVideoDemo';
 
 // Mock data - replace with actual API calls
 const mockDashboardData = {
@@ -97,6 +99,10 @@ export default function FarmerDashboard() {
         return <BreedingInsights farmId={user.farmId} />;
       case 'payments':
         return <PaymentModule farmerId={user.id} />; // New Payment Module
+      // case 'riskanalysis':
+      //   return <RiskAnalysis  />; // New Risk Analysis Module
+      case 'LiveVideo':
+        return <LiveVideoDemo />;
       case 'settings':
         return <SettingsPanel user={user} />;
       default:
@@ -143,10 +149,13 @@ export default function FarmerDashboard() {
               { id: 'animals', label: 'Animal Registry', icon: '🐄' },
               { id: 'health', label: 'Health Monitoring', icon: '❤️' },
               { id: 'biosecurity', label: 'Biosecurity Log', icon: '🛡️' },
-              { id: 'forecast', label: 'Outbreak Forecast', icon: '📈' },
+              { id: 'forecast', label: 'Risk Forecasting', icon: '📈' },
               { id: 'reports', label: 'Reports', icon: '📋' },
               { id: 'breeding', label: 'Breeding Insights', icon: '🔍' },
-               { id: 'payments', label: 'Payments', icon: '💳' } 
+              { id: 'payments', label: 'Payments', icon: '💳' } ,
+              // { id: 'riskanalysis', label: 'Risk Analysis', icon: '⚠️' },
+              { id: 'LiveVideo', label: 'LiveVideo', icon: '⚙️' }
+              
             ].map(item => (
               <button
                 key={item.id}
@@ -288,7 +297,7 @@ export default function FarmerDashboard() {
               fontWeight: 'bold',
               color: '#2d5016'
             }}>
-              Welcome back, {user.name}!
+              Welcome back, {"Vaibhav"}!
             </h1>
             <p style={{ 
               margin: 0, 
@@ -314,8 +323,8 @@ export default function FarmerDashboard() {
             >
               <option value="en">English</option>
               <option value="hi">Hindi</option>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
+              <option value="es">Marathi</option>
+              {/* <option value="fr">French</option> */}
             </select>
             
             <div style={{
