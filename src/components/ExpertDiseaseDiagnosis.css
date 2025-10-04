@@ -1,0 +1,425 @@
+/* ExpertDiseaseDiagnosis.css */
+.disease-diagnosis {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.diagnosis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.diagnosis-header h2 {
+  color: #2d5016;
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stat-card.critical {
+  border-top: 4px solid #e53e3e;
+}
+
+.stat-card.warning {
+  border-top: 4px solid #dd6b20;
+}
+
+.stat-card.normal {
+  border-top: 4px solid #38a169;
+}
+
+.stat-card.info {
+  border-top: 4px solid #3182ce;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-card.critical .stat-number {
+  color: #e53e3e;
+}
+
+.stat-card.warning .stat-number {
+  color: #dd6b20;
+}
+
+.stat-card.normal .stat-number {
+  color: #38a169;
+}
+
+.stat-card.info .stat-number {
+  color: #3182ce;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #718096;
+  font-weight: 500;
+}
+
+.diagnosis-tabs {
+  display: flex;
+  background: white;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  padding: 15px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #718096;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab.active {
+  color: #3182ce;
+  border-bottom-color: #3182ce;
+  background: #f7fafc;
+}
+
+.tab:hover:not(.active) {
+  background: #f7fafc;
+  color: #4a5568;
+}
+
+.diagnosis-content {
+  background: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+}
+
+.cases-list {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.case-item {
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.case-item:last-child {
+  border-bottom: none;
+}
+
+.case-item:hover {
+  background: #f7fafc;
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.case-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge.critical {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.badge.urgent {
+  background: #feebc8;
+  color: #dd6b20;
+}
+
+.badge.normal {
+  background: #c6f6d5;
+  color: #276749;
+}
+
+.animal-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #edf2f7;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.case-time {
+  font-size: 0.8rem;
+  color: #718096;
+}
+
+.case-title {
+  margin: 0 0 8px 0;
+  color: #2d3748;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.case-description {
+  margin: 0 0 12px 0;
+  color: #718096;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.case-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 0.8rem;
+  color: #718096;
+  margin-bottom: 15px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.case-symptoms {
+  margin-bottom: 15px;
+}
+
+.symptoms-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.symptoms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.symptom-tag {
+  padding: 4px 8px;
+  background: #ebf8ff;
+  color: #3182ce;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.case-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background: #3182ce;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2c5aa0;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #4a5568;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e0;
+}
+
+.btn-success {
+  background: #38a169;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #2f855a;
+}
+
+.empty-state {
+  padding: 40px;
+  text-align: center;
+  color: #718096;
+}
+
+.diagnosis-form {
+  padding: 25px;
+  background: #f7fafc;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.symptoms-selector {
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  padding: 15px;
+  background: white;
+}
+
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.symptom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .diagnosis-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .diagnosis-tabs {
+    flex-direction: column;
+  }
+  
+  .case-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .case-meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .case-actions {
+    justify-content: flex-start;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+/* Scrollbar Styling */
+.cases-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cases-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.cases-list::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+.cases-list::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
