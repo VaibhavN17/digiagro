@@ -71,7 +71,7 @@ export default function PaymentModule({ farmerId }: { farmerId: string }) {
         status: "overdue",
         category: "veterinary",
       },
-       {
+      {
         id: "4",
         description: "for testing payment",
         amount: 1,
