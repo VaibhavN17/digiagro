@@ -3,18 +3,18 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import DashboardOverview from '../../components/DashboardOverview';
-import AnimalRegistry from '../../components/AnimalRegistry';
-import HealthMonitoring from '../../components/HealthMonitoring';
-import BiosecurityLog from '../../components/BiosecurityLog';
-import OutbreakForecast from '../../components/OutbreakForecast';
-import ReportsModule from '../../components/ReportsModule';
-import BreedingInsights from '../../components/BreedingInsights';
-import PaymentModule from '../../components/PaymentModule'; // New Payment Module
-import SettingsPanel from '../../components/SettingsPanel';
-import MobileAlertFeed from '../../components/MobileAlertFeed';
+import DashboardOverview from '../../components/FarmerDashboardOverview';
+import AnimalRegistry from '../../components/FarmerAnimalRegistry';
+import HealthMonitoring from '../../components/FarmerHealthMonitoring';
+import BiosecurityLog from '../../components/FarmerBiosecurityLog';
+import OutbreakForecast from '../../components/FarmerOutbreakForecast';
+import ReportsModule from '../../components/FarmerReportsModule';
+import BreedingInsights from '../../components/FarmerBreedingInsights';
+import PaymentModule from '../../components/FarmerPaymentModule'; // New Payment Module
+import SettingsPanel from '../../components/FarmerSettingsPanel';
+import MobileAlertFeed from '../../components/FarmerMobileAlertFeed';
 //import RiskAnalysis from '../../components/RiskAnalysis'; // New Risk Analysis Module
-import LiveVideoDemo from '@/components/LiveVideoDemo';
+import LiveVideoDemo from '@/components/FarmerLiveVideoDemo';
 
 // Mock data - replace with actual API calls
 const mockDashboardData = {

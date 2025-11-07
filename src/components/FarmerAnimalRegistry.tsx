@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import './AnimalRegistry.css';
+import './FarmerAnimalRegistry.css';
 
 interface Animal {
   id: string;

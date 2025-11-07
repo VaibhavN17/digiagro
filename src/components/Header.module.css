@@ -1,7 +1,7 @@
 /* src/components/Header.module.css */
 .header {
-  background: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -10,252 +10,330 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 80px;
 }
 
-/* Top Bar Styles */
-.topBar {
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-  padding: 12px 0;
-}
-
+/* Logo Section */
 .logoSection {
+  flex-shrink: 0;
+}
+
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoContainer {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #2d5016;
-  text-decoration: none;
-  margin: 0;
+.logoImage {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.logo:hover {
-  color: #1e7e34;
+.logoText {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoMain {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
 }
 
 .tagline {
-  font-size: 14px;
-  color: #6c757d;
-  font-style: italic;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  margin-top: 0.2rem;
 }
 
-.searchSection {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 20px;
-}
-
-.searchForm {
-  display: flex;
-  background: white;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.searchInput {
-  flex: 1;
-  padding: 8px 12px;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: transparent;
-}
-
-.searchInput::placeholder {
-  color: #6c757d;
-}
-
-.searchButton {
-  padding: 8px 12px;
-  background: #28a745;
-  border: none;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.searchButton:hover {
-  background: #218838;
-}
-
-.userSection {
-  display: flex;
-  align-items: center;
-}
-
-.userInfo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.welcome {
-  font-size: 14px;
-  color: #495057;
-  font-weight: 500;
-}
-
-.logoutButton {
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.logoutButton:hover {
-  background: #c82333;
-}
-
-.loginButton {
-  background: #28a745;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-.loginButton:hover {
-  background: #218838;
-}
-
-/* Navigation Styles */
+/* Navigation */
 .nav {
-  background: white;
-  padding: 12px 0;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.navLeft {
   display: flex;
   align-items: center;
-  gap: 30px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
 .navLink {
+  color: white;
   text-decoration: none;
-  color: #495057;
   font-weight: 500;
-  font-size: 16px;
-  padding: 8px 0;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
   position: relative;
-  transition: color 0.3s ease;
 }
 
 .navLink:hover {
-  color: #28a745;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
 }
 
 .navLink.active {
-  color: #28a745;
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
 }
 
-.navLink.active::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #28a745;
+.dashboardLink {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.navRight {
+.dashboardLink:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Auth Section */
+.authSection {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1rem;
 }
 
-.legalLink {
+.authButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.signInButton {
+  color: white;
   text-decoration: none;
-  color: #6c757d;
-  font-size: 14px;
-  transition: color 0.3s ease;
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
 }
 
-.legalLink:hover {
-  color: #495057;
+.signInButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.signUpButton {
+  background: white;
+  color: #2d5016;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.signUpButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* User Menu */
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcomeText {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.logoutButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logoutButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Menu Button */
+.mobileMenuButton {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  gap: 4px;
+}
+
+.mobileMenuButton span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #2d5016 0%, #4a7c2a 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobileMenuOpen {
+  display: block;
+}
+
+.mobileNavLinks {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileNavLink {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mobileNavLink:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobileAuthButtons {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobileWelcome {
+  color: white;
+  font-weight: 500;
+  padding: 1rem;
+  text-align: center;
+}
+
+.mobileSignInButton {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mobileSignInButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.mobileSignUpButton {
+  background: white;
+  color: #2d5016;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.mobileSignUpButton:hover {
+  transform: translateY(-1px);
+}
+
+.mobileLogoutButton {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.mobileLogoutButton:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .container {
-    padding: 0 15px;
-    flex-wrap: wrap;
+    padding: 0 1rem;
   }
 
-  .topBar .container {
-    gap: 10px;
-  }
-
-  .logoSection {
-    order: 1;
-    flex: 1;
-  }
-
-  .searchSection {
-    order: 3;
-    max-width: 100%;
-    margin: 10px 0 0 0;
-    min-width: 100%;
-  }
-
-  .userSection {
-    order: 2;
-  }
-
-  .tagline {
+  .nav {
     display: none;
   }
 
-  .nav .container {
-    flex-direction: column;
-    gap: 15px;
+  .authSection {
+    display: none;
   }
 
-  .navLeft {
-    justify-content: center;
-    gap: 20px;
+  .mobileMenuButton {
+    display: flex;
   }
 
-  .navRight {
-    justify-content: center;
-    gap: 15px;
+  .logoMain {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
-  .logo {
-    font-size: 20px;
+  .container {
+    height: 70px;
   }
 
-  .welcome {
-    display: none;
+  .logoContainer {
+    gap: 0.75rem;
   }
 
-  .navLeft {
-    gap: 15px;
+  .logoImage {
+    width: 40px;
+    height: 40px;
   }
 
-  .navLink {
-    font-size: 14px;
+  .logoMain {
+    font-size: 1.3rem;
   }
 
-  .legalLink {
-    font-size: 12px;
+  .tagline {
+    font-size: 0.7rem;
   }
 }

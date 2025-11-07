@@ -1,6 +1,6 @@
 // E:\SIH Work\Final_Project_SIH\digiagro\src\components\LiveVideoDemo.jsx
 import React, { useState } from 'react';
-import './LiveVideoDemo.css';
+import './FarmerLiveVideoDemo.css';
 
 type CameraType = 'biosecurity' | 'animal_welfare' | 'equipment' | 'security' | 'inventory';
 

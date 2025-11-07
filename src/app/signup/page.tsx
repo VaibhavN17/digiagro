@@ -2,89 +2,79 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./login.module.css";
+import styles from "../login/login.module.css"; // reuse your login CSS
 
-export default function Login() {
+export default function Signup() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("farmer");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  // --- Handle login form submission ---
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const user = await authenticateUser(email, password, role);
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, role }),
+      });
 
-      if (user) {
-        // Store user data in localStorage
-        localStorage.setItem("user", JSON.stringify(user));
+      const data = await res.json();
 
-        // Redirect based on role
-        switch (user.role) {
-          case "farmer":
-            router.push("/farmer-dashboard");
-            break;
-          case "expert":
-            router.push("/expert-dashboard");
-            break;
-          case "admin":
-            router.push("/admin-dashboard");
-            break;
-          default:
-            router.push("/dashboard");
-        }
+      if (res.ok) {
+        alert("Account created successfully!");
+        router.push("/login");
       } else {
-        alert("Invalid credentials");
+        alert(data.message || "Signup failed");
       }
     } catch (error) {
-      console.error("Login error:", error);
-      alert("Login failed, try again.");
+      console.error("Signup error:", error);
+      alert("Something went wrong");
     } finally {
       setLoading(false);
     }
   };
 
-  // --- Authenticate user with backend ---
-  const authenticateUser = async (email: string, password: string, role: string) => {
-    try {
-      const res = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, role }),
-      });
-
-      if (!res.ok) return null;
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.error("Auth error:", err);
-      return null;
-    }
-  };
-
   return (
     <div className={styles.container}>
-      {/* Left side - Image section */}
+      {/* Left side - Image */}
       <div className={styles.imageSection}>
         <div className={styles.imageOverlay}></div>
       </div>
 
-      {/* Right side - Login form */}
+      {/* Right side - Signup Form */}
       <div className={styles.formSection}>
         <div className={styles.formContainer}>
-          <h2 className={styles.formTitle}>Welcome to</h2>
+          <h2 className={styles.formTitle}>Join</h2>
           <h1 className={styles.formMainTitle}>DigiFarm</h1>
 
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <h3 className={styles.loginTitle}>Login to your account</h3>
+          <form className={styles.form} onSubmit={handleSignup}>
+            <h3 className={styles.loginTitle}>Create your account</h3>
 
+            {/* Name */}
+            <div className={styles.formGroup}>
+              <label htmlFor="name" className={styles.label}>
+                Full Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your full name"
+                className={styles.input}
+                required
+              />
+            </div>
+
+            {/* Email */}
             <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.label}>
-                E-mail Address
+                Email Address
               </label>
               <input
                 type="email"
@@ -97,6 +87,7 @@ export default function Login() {
               />
             </div>
 
+            {/* Password */}
             <div className={styles.formGroup}>
               <label htmlFor="password" className={styles.label}>
                 Password
@@ -112,9 +103,10 @@ export default function Login() {
               />
             </div>
 
+            {/* Role */}
             <div className={styles.formGroup}>
               <label htmlFor="role" className={styles.label}>
-                Login As
+                Sign up as
               </label>
               <select
                 id="role"
@@ -128,20 +120,15 @@ export default function Login() {
               </select>
             </div>
 
-            <button
-              type="submit"
-              className={styles.button}
-              disabled={loading}
-            >
-              {loading ? "Logging in..." : "Sign In"}
+            {/* Submit Button */}
+            <button type="submit" className={styles.button} disabled={loading}>
+              {loading ? "Creating..." : "Sign Up"}
             </button>
 
+            {/* Links */}
             <div className={styles.links}>
-              <a href="/forgot-password" className={styles.link}>
-                Forgot Password?
-              </a>
-              <a href="/signup" className={styles.link}>
-                Don’t have an account? Sign Up
+              <a href="/login" className={styles.link}>
+                Already have an account? Login
               </a>
             </div>
           </form>

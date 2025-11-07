@@ -1,17 +1,22 @@
-// src/components/Header.tsx
 "use client";
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
 import styles from './Header.module.css';
+import React from 'react';
+import digiformlogo from '@/assets/images/digifarm.png';
 
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Check if current page is login page
+  const isLoginPage = pathname === '/login';
 
   useEffect(() => {
     // Check if user is logged in on component mount
@@ -54,13 +59,8 @@ export default function Header() {
     router.refresh(); // Refresh to update the page
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      // Implement search functionality
-      console.log('Searching for:', searchQuery);
-      // router.push(`/search?q=${searchQuery}`);
-    }
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const isActiveLink = (path: string) => {
@@ -69,40 +69,39 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {/* Top Bar with Logo and Search */}
-      <div className={styles.topBar}>
-        <div className={styles.container}>
-          <div className={styles.logoSection}>
-            <Link href="/" className={styles.logo}>
-              DigiFarm 
-            </Link>
-            <span className={styles.tagline}>Digital Agriculture Platform</span>
-          </div>
-          
-          <div className={styles.searchSection}>
-            <form onSubmit={handleSearch} className={styles.searchForm}>
-              <input
-                type="text"
-                placeholder="Search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className={styles.searchInput}
+      <div className={styles.container}>
+        {/* Logo Section */}
+        <div className={styles.logoSection}>
+          <Link href="/" className={styles.logoLink}>
+            <div className={styles.logoContainer}>
+              <Image 
+                src={digiformlogo} 
+                alt="DigiFarm Logo"
+                width={50}
+                height={50}
+                className={styles.logoImage}
               />
-              <button type="submit" className={styles.searchButton}>
-                🔍
-              </button>
-            </form>
-          </div>
+              <div className={styles.logoText}>
+                <span className={styles.logoMain}>DigiFarm</span>
+                <span className={styles.tagline}>Powering the Future of Flock Health</span>
+              </div>
+            </div>
+          </Link>
         </div>
-      </div>
 
-      {/* Navigation Bar */}
-      <nav className={styles.nav}>
-        <div className={styles.container}>
-          <div className={styles.navLeft}>
+        {/* Desktop Navigation */}
+        <nav className={styles.nav}>
+          <div className={styles.navLinks}>
             <Link href="/" className={`${styles.navLink} ${isActiveLink('/')}`}>
               Home
             </Link>
+            <Link href="/about" className={`${styles.navLink} ${isActiveLink('/about')}`}>
+              About
+            </Link>
+            <Link href="/features" className={`${styles.navLink} ${isActiveLink('/features')}`}>
+              Features
+            </Link>
+            
             {isLoggedIn ? (
               <Link 
                 href={
@@ -110,35 +109,128 @@ export default function Header() {
                   user?.role === 'expert' ? '/expert-dashboard' :
                   user?.role === 'admin' ? '/admin-dashboard' : '/dashboard'
                 } 
-                className={`${styles.navLink} ${isActiveLink('/dashboard')}`}
+                className={`${styles.navLink} ${styles.dashboardLink}`}
               >
                 Dashboard
               </Link>
-            ) : (
-              <Link href="/about" className={`${styles.navLink} ${isActiveLink('/about')}`}>
-                About
-              </Link>
-            )}
-            {isLoggedIn && (
-              <Link href="/profile" className={`${styles.navLink} ${isActiveLink('/profile')}`}>
-                Profile
-              </Link>
-            )}
+            ) : null}
           </div>
+        </nav>
 
-          <div className={styles.navRight}>
-            <Link href="/privacy" className={styles.legalLink}>
-              Privacy
+        {/* Auth Buttons - Only show on login page when not logged in */}
+        <div className={styles.authSection}>
+          {isLoggedIn ? (
+            <div className={styles.userMenu}>
+              <span className={styles.welcomeText}>Welcome, {user?.name}</span>
+              <button onClick={handleLogout} className={styles.logoutButton}>
+                Sign Out
+              </button>
+            </div>
+          ) : (
+            // Only show auth buttons on login page
+            isLoginPage && (
+              <div className={styles.authButtons}>
+                <Link href="/login" className={styles.signInButton}>
+                  Sign In
+                </Link>
+                <Link href="/signup" className={styles.signUpButton}>
+                  Sign Up
+                </Link>
+              </div>
+            )
+          )}
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className={styles.mobileMenuButton}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        <div className={styles.mobileNavLinks}>
+          <Link 
+            href="/" 
+            className={`${styles.mobileNavLink} ${isActiveLink('/')}`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link 
+            href="/about" 
+            className={`${styles.mobileNavLink} ${isActiveLink('/about')}`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link 
+            href="/features" 
+            className={`${styles.mobileNavLink} ${isActiveLink('/features')}`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Features
+          </Link>
+          
+          {isLoggedIn ? (
+            <Link 
+              href={
+                user?.role === 'farmer' ? '/farmer-dashboard' :
+                user?.role === 'expert' ? '/expert-dashboard' :
+                user?.role === 'admin' ? '/admin-dashboard' : '/dashboard'
+              } 
+              className={styles.mobileNavLink}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Dashboard
             </Link>
-            <Link href="/terms" className={styles.legalLink}>
-              Terms
-            </Link>
-            <Link href="/contact" className={styles.legalLink}>
-              Contact
-            </Link>
+          ) : null}
+
+          {/* Mobile Auth Buttons - Only show on login page when not logged in */}
+          <div className={styles.mobileAuthButtons}>
+            {isLoggedIn ? (
+              <>
+                <span className={styles.mobileWelcome}>Welcome, {user?.name}</span>
+                <button 
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }} 
+                  className={styles.mobileLogoutButton}
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              // Only show mobile auth buttons on login page
+              isLoginPage && (
+                <>
+                  <Link 
+                    href="/login" 
+                    className={styles.mobileSignInButton}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                  <Link 
+                    href="/signup" 
+                    className={styles.mobileSignUpButton}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )
+            )}
           </div>
         </div>
-      </nav>
+      </div>
     </header>
   );
 }

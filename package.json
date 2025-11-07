@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@next/swc-win32-x64-msvc": "^15.5.4",
+    "bcryptjs": "^3.0.3",
+    "mysql2": "^3.15.3",
     "next": "15.5.4",
+    "razorpay": "^2.9.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
